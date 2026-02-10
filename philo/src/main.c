@@ -24,21 +24,35 @@ int	valid_input(int argc, char **argv)
 				return (0);
 			j++;
 		}
-		if (!check_overflow(argv[i]))
-			return (0);
 		i++;
 	}
-			
-	//chamar atol em loop
-	if ()
+	return (1);
 }
 
 
+t_data	parser(int argc, char **argv)
+{
+	t_data	rules;
+
+	rules.n_philo = atoi(argv[1]);
+	rules.time_to_die = atol(argv[2]);
+	rules.time_to_eat = atol(argv[3]);
+	rules.time_to_sleep = atol(argv[4]);
+	if (argc == 6)
+		rules.times_a_philo_must_eat = atol(argv[5]);
+	if (!check_overflow())
+
+}
+
 int	main(int argc, char **argv)
 {
+	t_data	rules;
+
 	if (!valid_input(argc, argv))
-		return (1);
-	
+		return (1);	
+	rules = parser(argc, argv)
+	if (!data)
+
 	
 	return (0);
 }
