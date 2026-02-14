@@ -1,9 +1,7 @@
 #ifndef PHILO_H
 # define PHILO_H
-
 #include <pthread.h>
 
-// tratar se nao existir times_a_philo_must_eat;
 typedef struct s_data
 {
 	int				n_philo;
@@ -26,5 +24,11 @@ typedef struct s_philo
 	pthread_mutex_t	meal_mutex;
 	t_data			*p_data;
 }	t_philo;
+
+int	ft_isdigit(int c);
+int	parse_sign(const char *str, int *i);
+int	ft_atol_safe(const char *str, long *tmp);
+int	parser_input(t_data *rules, int argc, char **argv);
+
 
 #endif
