@@ -1,0 +1,103 @@
+#include "philo.h"
+
+// criar o monitor de morte (tempo de agora - ultima ref > time_to_die)
+
+
+// Inicializar variáveis globais (start_time, stop flag e outras)
+// criar um arquivo pra criar a thread dos philos
+// criar join_threads e cleanup
+
+
+static void	destroy_arr_mutex(pthread_mutex_t *mutex, int size);
+static int	init_forks(t_data *rules);
+static int	init_global_mutexes(t_data *rules);
+static int	init_philos(t_data *rules);
+
+int	init_data(t_data *rules)
+{
+	if (!init_forks(rules))
+		return (0);
+	if (!init_global_mutexes(rules))
+	{
+		destroy_arr_mutex(rules->forks, rules->n_philo);
+		free(rules->forks);
+		return (0);
+	}	
+	if (!init_philos(rules))
+	{
+		destroy_arr_mutex(rules->forks, rules->n_philo);
+		free(rules->forks);
+		pthread_mutex_destroy(&rules->print_mutex);
+		pthread_mutex_destroy(&rules->death_mutex);
+		free(rules->philos);
+		return (0);
+	}
+	return (1);
+}
+
+static void	destroy_arr_mutex(pthread_mutex_t *mutex, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		pthread_mutex_destroy(&mutex[i]);
+		i++;
+	}
+	return ;
+}
+
+static int	init_forks(t_data *rules)
+{
+	int i;
+
+	rules->forks = malloc(rules->n_philo * sizeof(pthread_mutex_t));
+	if (!rules->forks)
+		return (0);
+	i = 0;
+	while (i < rules->n_philo)
+	{
+		if (pthread_mutex_init(&rules->forks[i], NULL) != 0)
+		{
+			destroy_arr_mutex(rules->forks, i);
+			free(rules->forks);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+static int	init_global_mutexes(t_data *rules)
+{
+	if (pthread_mutex_init(&rules->print_mutex, NULL) != 0)
+		return (0);
+	if (pthread_mutex_init(&rules->death_mutex, NULL) != 0)
+	{
+		pthread_mutex_destroy(&rules->print_mutex);
+		return (0);
+	}
+	return (1);
+}
+
+static int	init_philos(t_data *rules)
+{
+	int	i;
+	
+	rules->philos = malloc(rules->n_philo * sizeof(t_philo));
+	if (!rules->philos)
+		return (0);
+	i = 0;
+	while (i < rules->n_philo)
+	{
+		rules->philos[i].id = i;
+		rules->philos[i].last_meal_time = 0;
+		rules->philos[i].meals_eaten = 0;
+		rules->philos[i].left_fork = &rules->forks[i];
+		rules->philos[i].right_fork = &rules->forks[(i + 1) % rules->n_philo];
+		rules->philos[i].p_data = rules;
+		i++;
+	}
+	return (1);
+}

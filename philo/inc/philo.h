@@ -29,10 +29,16 @@ typedef struct s_philo
 	t_data			*p_data;
 }	t_philo;
 
-int	ft_isdigit(int c);
-int	parse_sign(const char *str, int *i);
-int	ft_atol_safe(const char *str, long *tmp);
-int	parser_input(t_data *rules, int argc, char **argv);
+int		ft_isdigit(int c);
+int		parse_sign(const char *str, int *i);
+int		ft_atol_safe(const char *str, long *tmp);
+int		parser_input(t_data *rules, int argc, char **argv);
+
+void	destroy_arr_mutex(pthread_mutex_t *mutex, int size);
+int		init_philos(t_data *rules);
+int 	init_forks(t_data *rules);
+int		init_data(t_data *rules);
+
 
 
 #endif
