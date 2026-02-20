@@ -1,6 +1,8 @@
 #include "philo.h"
 
-//     take_forks(philo);
+//     take_forks(philo); implementar
+//			Ímpares pegam esquerda depois direita
+//			Pares pegam direita depois esquerda
 //    eat(philo);
 //    put_forks(philo);
 //    sleep_philo(philo);

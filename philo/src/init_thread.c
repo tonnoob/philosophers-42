@@ -11,10 +11,12 @@ void	*routine(void *arg)
 	simulation_on = 1;
 	while (simulation_on)
 	{
-		
-		
+		// take_forks()
+		// eat()
+		// sleep
+		// think
+		simulation_on = 0;
 	}
-	
 }
 
 void	start_simulation(t_data	*rules)
