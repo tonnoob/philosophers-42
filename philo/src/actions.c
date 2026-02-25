@@ -17,7 +17,7 @@
 
 long	get_time(void)
 {
-	struct timeval time;
+	struct timeval	time;
 	long			ms;
 	
 	gettimeofday(&time, NULL);
@@ -33,12 +33,23 @@ void	take_forks(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		pthread_mutex_lock(&philo->p_data->print_mutex);
-		printf("%ld %d is eating\n", timestamp, philo->id);
-		pthread_mutex_unlock(&philo->p_data->print_mutex);
-
-		//trabalhar com um print_status
-		// criar nova variavel na struct pra saber se alguem ja foi de base
+		print_status(philo, "is eating");
 	}
+	if (philo->id % 2 != 0)
 	
+	
+}
+void	print_status(t_philo *philo, char *action)
+{
+	long	timestamp;
+
+	pthread_mutex_lock(&philo->p_data->print_mutex);
+	pthread_mutex_lock(&philo->p_data->death_mutex);
+	timestamp = get_time() - philo->p_data->time_start;;
+	if (philo->p_data->someone_died == 0)
+		printf("%ld %d %s\n", timestamp, philo->id, action);
+	else
+		printf(printf("%ld %d died\n", timestamp, philo->id));
+	pthread_mutex_unlock(&philo->p_data->print_mutex);
+	pthread_mutex_unlock(&philo->p_data->death_mutex);
 }

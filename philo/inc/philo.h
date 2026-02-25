@@ -17,6 +17,8 @@ typedef struct s_data
 	pthread_mutex_t	death_mutex;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
+	int				someone_died;
+
 }	t_data;
 
 typedef struct s_philo
