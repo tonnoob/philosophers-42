@@ -15,3 +15,30 @@
 // ◦ timestamp_in_ms X is thinking
 // ◦ timestamp_in_ms X died
 
+long	get_time(void)
+{
+	struct timeval time;
+	long			ms;
+	
+	gettimeofday(&time, NULL);
+	ms = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	return (ms);
+}
+
+void	take_forks(t_philo *philo)
+{
+	long	timestamp;
+	
+	timestamp = get_time() - philo->p_data->time_start;
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(philo->left_fork);
+		pthread_mutex_lock(&philo->p_data->print_mutex);
+		printf("%ld %d is eating\n", timestamp, philo->id);
+		pthread_mutex_unlock(&philo->p_data->print_mutex);
+
+		//trabalhar com um print_status
+		// criar nova variavel na struct pra saber se alguem ja foi de base
+	}
+	
+}
