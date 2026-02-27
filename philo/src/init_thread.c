@@ -8,10 +8,10 @@ void	*routine(void *arg)
 	int		simulation_on;
 
 	philo = (t_philo *)arg;
-	simulation_on = 1;
-	while (simulation_on)
+	philo->p_data->someone_died = 1;
+	while (!philo->p_data->someone_died)
 	{
-		// take_forks()
+		take_forks(philo);
 		// eat()
 		// sleep
 		// think

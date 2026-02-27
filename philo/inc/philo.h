@@ -42,7 +42,12 @@ void	destroy_arr_mutex(pthread_mutex_t *mutex, int size);
 int		init_philos(t_data *rules);
 int 	init_forks(t_data *rules);
 int		init_data(t_data *rules);
+	
+long	get_time(void);
+void	print_status(t_philo *philo, char *action);
+int		ft_strcmp(const char *s1, const char *s2);
 
+void	take_forks(t_philo *philo);
 
 
 #endif
