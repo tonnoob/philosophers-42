@@ -12,7 +12,7 @@ void	*routine(void *arg)
 	while (!philo->p_data->someone_died)
 	{
 		take_forks(philo);
-		// eat()
+		eat(philo);
 		// sleep
 		// think
 		simulation_on = 0;
