@@ -1,12 +1,6 @@
 #include "philo.h"
 
-// criar o monitor de morte (tempo de agora - ultima ref > time_to_die)
-
-
-// Inicializar variáveis globais (start_time, stop flag e outras)
-// criar um arquivo pra criar a thread dos philos
 // criar join_threads e cleanup
-
 
 static void	destroy_arr_mutex(pthread_mutex_t *mutex, int size);
 static int	init_forks(t_data *rules);

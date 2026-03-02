@@ -1,18 +1,5 @@
 #include "philo.h"
 
-//    eat(philo);
-//    put_forks(philo);
-//    sleep_philo(philo);
-//    think(philo);
-
-// Any state change of a philosopher must be formatted as follows:
-// ◦ timestamp_in_ms X has taken a fork
-// ◦ timestamp_in_ms X is eating
-// ◦ timestamp_in_ms X is sleeping
-// ◦ timestamp_in_ms X is thinking
-// ◦ timestamp_in_ms X died
-
-
 void	take_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
@@ -30,6 +17,7 @@ void	take_forks(t_philo *philo)
 		print_status(philo, "has taken a fork");
 	}
 }
+
 void	eat(t_philo *philo)
 {
 	long	time_start;
@@ -41,8 +29,13 @@ void	eat(t_philo *philo)
 	print_status(philo, "is eating");
 	while (get_time() - time_start  < philo->p_data->time_to_eat)
 	{
+		pthread_mutex_lock(&philo->p_data->death_mutex);	
 		if (philo->p_data->someone_died)
+		{
+			pthread_mutex_unlock(&philo->p_data->death_mutex);
 			break;
+		}
+		pthread_mutex_unlock(&philo->p_data->death_mutex);
 		usleep(100);
 	}
 	pthread_mutex_lock(&philo->meal_mutex);
@@ -53,6 +46,27 @@ void	eat(t_philo *philo)
 }
 void	sleep_philo(t_philo *philo)
 {
-	
+	long	time_start;
 
+	time_start = get_time();
+	print_status(philo, "is sleeping");
+	while (get_time() - time_start < philo->p_data->time_to_sleep)
+	{
+    	pthread_mutex_lock(&philo->p_data->death_mutex);
+    	if (philo->p_data->someone_died)
+    	{
+        	pthread_mutex_unlock(&philo->p_data->death_mutex);
+        	break;
+    	}
+    	pthread_mutex_unlock(&philo->p_data->death_mutex);
+		usleep(100);
+	}
+}
+
+void	think(t_philo *philo)
+{
+	long	thinking_time;
+
+	print_status(philo, "is thinking");
+	usleep(100);
 }

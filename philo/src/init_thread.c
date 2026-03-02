@@ -1,7 +1,5 @@
 #include "philo.h"
 
-// fazer a função routine
-
 void	*routine(void *arg)
 {
 	t_philo	*philo;
@@ -13,8 +11,8 @@ void	*routine(void *arg)
 	{
 		take_forks(philo);
 		eat(philo);
-		// sleep
-		// think
+		sleep_philo(philo);
+		think(philo);
 		simulation_on = 0;
 	}
 }
@@ -28,7 +26,7 @@ void	start_simulation(t_data	*rules)
 	while (i < rules->n_philo)
 	{
 		rules->philos[i].last_meal_time = rules->time_start;
-		pthread_create(&rules->philos[i].thread, NULL, routine, );
+		pthread_create(&rules->philos[i].thread, NULL, routine, &rules->philos[i]);
 		i++;
 	}
 	return (0);

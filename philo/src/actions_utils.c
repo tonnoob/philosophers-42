@@ -13,17 +13,18 @@ long	get_time(void)
 void	print_status(t_philo *philo, char *action)
 {
 	long	timestamp;
-	int		died;
 
 	pthread_mutex_lock(&philo->p_data->death_mutex);
-	died = philo->p_data->someone_died;
-	pthread_mutex_unlock(&philo->p_data->death_mutex);
-	if (died || ft_strcmp(action, "died") == 0)
+	if (philo->p_data->someone_died && ft_strcmp(action, "died") != 0)
+	{
+		pthread_mutex_unlock(&philo->p_data->death_mutex);
 		return;
+	}
 	pthread_mutex_lock(&philo->p_data->print_mutex);
 	timestamp = get_time() - philo->p_data->time_start;
 	printf("%ld %d %s\n", timestamp, philo->id, action);
 	pthread_mutex_unlock(&philo->p_data->print_mutex);
+	pthread_mutex_unlock(&philo->p_data->death_mutex);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)
@@ -39,4 +40,3 @@ int	ft_strcmp(const char *s1, const char *s2)
 	}
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
-

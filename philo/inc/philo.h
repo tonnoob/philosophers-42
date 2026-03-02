@@ -48,6 +48,10 @@ void	print_status(t_philo *philo, char *action);
 int		ft_strcmp(const char *s1, const char *s2);
 
 void	take_forks(t_philo *philo);
+void	eat(t_philo *philo);
+void	sleep_philo(t_philo *philo);
+void	think(t_philo *philo);
+
 
 
 #endif
