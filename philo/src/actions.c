@@ -52,13 +52,13 @@ void	sleep_philo(t_philo *philo)
 	print_status(philo, "is sleeping");
 	while (get_time() - time_start < philo->p_data->time_to_sleep)
 	{
-    	pthread_mutex_lock(&philo->p_data->death_mutex);
-    	if (philo->p_data->someone_died)
-    	{
-        	pthread_mutex_unlock(&philo->p_data->death_mutex);
-        	break;
-    	}
-    	pthread_mutex_unlock(&philo->p_data->death_mutex);
+		pthread_mutex_lock(&philo->p_data->death_mutex);
+		if (philo->p_data->someone_died)
+		{
+			pthread_mutex_unlock(&philo->p_data->death_mutex);
+			break;
+		}
+		pthread_mutex_unlock(&philo->p_data->death_mutex);
 		usleep(100);
 	}
 }

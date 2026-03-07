@@ -9,6 +9,7 @@ static int	init_philos(t_data *rules);
 
 int	init_data(t_data *rules)
 {
+	rules->someone_died = 0;
 	if (!init_forks(rules))
 		return (0);
 	if (!init_global_mutexes(rules))
@@ -83,10 +84,10 @@ static int	init_philos(t_data *rules)
 	if (!rules->philos)
 		return (0);
 	i = 0;
+	rules->time_start = get_time();
 	while (i < rules->n_philo)
 	{
-		rules->philos[i].id = i;
-		rules->philos[i].last_meal_time = 0;
+		rules->philos[i].id = i + 1;
 		rules->philos[i].meals_eaten = 0;
 		rules->philos[i].left_fork = &rules->forks[i];
 		rules->philos[i].right_fork = &rules->forks[(i + 1) % rules->n_philo];
