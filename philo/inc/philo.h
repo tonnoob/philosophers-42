@@ -4,8 +4,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/time.h>
+#include <unistd.h>
 
-typedef struct s_data
+typedef struct	s_philo t_philo;
+
+typedef struct	s_data
 {
 	int				n_philo;
 	long			time_to_die;
@@ -20,7 +23,7 @@ typedef struct s_data
 	int				someone_died;
 }	t_data;
 
-typedef struct s_philo
+typedef struct	s_philo
 {
 	int				id;
 	pthread_t		thread;
@@ -42,5 +45,6 @@ void	eat(t_philo *philo);
 void	sleep_philo(t_philo *philo);
 void	think(t_philo *philo);
 void	monitoring(t_data *rules);
+void	start_simulation(t_data *rules);
 
 #endif

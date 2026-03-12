@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../inc/philo.h"
 
 void	take_forks(t_philo *philo)
 {
@@ -65,8 +65,6 @@ void	sleep_philo(t_philo *philo)
 
 void	think(t_philo *philo)
 {
-	long	thinking_time;
-
 	print_status(philo, "is thinking");
 	usleep(100);
 }

@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../inc/philo.h"
 
 static int	philo_died(t_philo *philo);
 static int	philos_ate_the_meals(t_philo *philo);

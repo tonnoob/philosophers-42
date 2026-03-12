@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../inc/philo.h"
 
 static void	*routine(void *arg);
 static void create_threads(t_data *rules);
@@ -17,7 +17,7 @@ void	start_simulation(t_data *rules)
 	}
 	create_threads(rules);
 	monitoring(rules);
-	wait_threads(rules);
+	wait_thread(rules);
 }
 
 static void	*routine(void *arg)
@@ -67,7 +67,7 @@ static void	wait_thread(t_data *rules)
 	i = 0;
 	while (i < rules->n_philo)
 	{
-		pthread_join(&rules->philos[i].thread, NULL);
+		pthread_join(rules->philos[i].thread, NULL);
 		i++;
 	}
 	return ;

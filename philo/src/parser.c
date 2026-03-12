@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../inc/philo.h"
 #include <limits.h>
 
 static int	ft_atol_safe(const char *str, long *tmp);
@@ -45,12 +45,12 @@ static int	parse_sign(const char *str, int *i)
 
 	sign = 1;
 	while ((str[*i] >= 9 && str[*i] <= 13) || (str[*i] == 32))
-		*i++;
+		(*i)++;
 	if (str[*i] == '+' || str[*i] == '-')
 	{
 		if (str[*i] == '-')
 			sign = -1;
-		*i++;
+		(*i)++;
 	}
 	return (sign);
 }

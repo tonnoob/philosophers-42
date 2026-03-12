@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../inc/philo.h"
 
 static void cleanup(t_data *rules);
 
