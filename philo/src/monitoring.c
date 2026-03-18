@@ -35,7 +35,7 @@ static int	philo_died(t_philo *philo)
 	if (get_time() - philo->last_meal_time >= philo->p_data->time_to_die)
 	{
 		pthread_mutex_unlock(&philo->meal_mutex);
-			return (1);
+		return (1);
 	}
 	pthread_mutex_unlock(&philo->meal_mutex);
 	return (0);
@@ -47,11 +47,12 @@ static int	philos_ate_the_meals(t_philo *philo)
 	if (philo->meals_eaten == philo->p_data->times_a_philo_must_eat)
 	{
 		pthread_mutex_unlock(&philo->meal_mutex);
-			return (1);
+		return (1);
 	}
 	pthread_mutex_unlock(&philo->meal_mutex);
 	return (0);
 }
+
 static int	set_died(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->p_data->death_mutex);

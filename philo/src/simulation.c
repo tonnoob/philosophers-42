@@ -1,7 +1,7 @@
 #include "../inc/philo.h"
 
 static void	*routine(void *arg);
-static void create_threads(t_data *rules);
+static void	create_threads(t_data *rules);
 static void	wait_thread(t_data *rules);
 
 void	start_simulation(t_data *rules)
@@ -45,7 +45,7 @@ static void	*routine(void *arg)
 	return (NULL);
 }
 
-static void create_threads(t_data *rules)
+static void	create_threads(t_data *rules)
 {
 	int	i;
 
@@ -54,7 +54,8 @@ static void create_threads(t_data *rules)
 	while (i < rules->n_philo)
 	{
 		rules->philos[i].last_meal_time = rules->time_start;
-		pthread_create(&rules->philos[i].thread, NULL, routine, &rules->philos[i]);
+		pthread_create(&rules->philos[i].thread, NULL,
+			routine, &rules->philos[i]);
 		i++;
 	}
 	return ;

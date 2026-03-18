@@ -17,7 +17,7 @@ int	init_data(t_data *rules)
 		destroy_arr_mutex(rules->forks, rules->n_philo);
 		free(rules->forks);
 		return (0);
-	}	
+	}
 	if (!init_philos(rules))
 	{
 		destroy_arr_mutex(rules->forks, rules->n_philo);
@@ -32,7 +32,7 @@ int	init_data(t_data *rules)
 
 static void	destroy_arr_mutex(pthread_mutex_t *mutex, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)
@@ -45,7 +45,7 @@ static void	destroy_arr_mutex(pthread_mutex_t *mutex, int size)
 
 static int	init_forks(t_data *rules)
 {
-	int i;
+	int	i;
 
 	rules->forks = malloc(rules->n_philo * sizeof(pthread_mutex_t));
 	if (!rules->forks)
@@ -79,7 +79,7 @@ static int	init_global_mutexes(t_data *rules)
 static int	init_philos(t_data *rules)
 {
 	int	i;
-	
+
 	rules->philos = malloc(rules->n_philo * sizeof(t_philo));
 	if (!rules->philos)
 		return (0);

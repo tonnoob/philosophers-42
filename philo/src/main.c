@@ -1,6 +1,6 @@
 #include "../inc/philo.h"
 
-static void cleanup(t_data *rules);
+static void	cleanup(t_data *rules);
 
 int	main(int argc, char **argv)
 {
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 	cleanup(&rules);
 	return (0);
 }
+
 void	cleanup(t_data *rules)
 {
 	int	i;

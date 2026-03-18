@@ -22,7 +22,7 @@ int	parser_input(t_data *rules, int argc, char **argv)
 		return (0);
 	rules->time_to_sleep = tmp;
 	rules->times_a_philo_must_eat = -1;
-	if (argc == 6) 
+	if (argc == 6)
 	{
 		if (!ft_atol_safe(argv[5], &tmp) || tmp <= 0)
 			return (0);
@@ -41,7 +41,7 @@ static int	ft_isdigit(int c)
 
 static int	parse_sign(const char *str, int *i)
 {
-	int sign;
+	int	sign;
 
 	sign = 1;
 	while ((str[*i] >= 9 && str[*i] <= 13) || (str[*i] == 32))

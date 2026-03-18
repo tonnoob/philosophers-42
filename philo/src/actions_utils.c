@@ -4,7 +4,7 @@ long	get_time(void)
 {
 	struct timeval	time;
 	long			ms;
-	
+
 	gettimeofday(&time, NULL);
 	ms = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	return (ms);
@@ -18,7 +18,7 @@ void	print_status(t_philo *philo, char *action)
 	if (philo->p_data->someone_died && ft_strcmp(action, "died") != 0)
 	{
 		pthread_mutex_unlock(&philo->p_data->death_mutex);
-		return;
+		return ;
 	}
 	pthread_mutex_lock(&philo->p_data->print_mutex);
 	timestamp = get_time() - philo->p_data->time_start;
