@@ -10,7 +10,8 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRC = main.c init.c parser.c actions.c \
-	  actions_utils.c monitoring.c simulation.c
+	  actions_utils.c monitoring.c simulation_utils.c \
+	  simulation.c
 
 SRC := $(addprefix $(SRC_DIR)/, $(SRC))
 

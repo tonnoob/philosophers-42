@@ -1,6 +1,16 @@
-#include "../inc/philo.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osousa-d <osousa-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/22 20:55:08 by osousa-d          #+#    #+#             */
+/*   Updated: 2026/03/22 21:20:45 by osousa-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// criar join_threads e cleanup
+#include "../inc/philo.h"
 
 static void	destroy_arr_mutex(pthread_mutex_t *mutex, int size);
 static int	init_forks(t_data *rules);
@@ -92,6 +102,7 @@ static int	init_philos(t_data *rules)
 		rules->philos[i].left_fork = &rules->forks[i];
 		rules->philos[i].right_fork = &rules->forks[(i + 1) % rules->n_philo];
 		rules->philos[i].p_data = rules;
+		rules->philos[i].philo_is_full = 0;
 		i++;
 	}
 	return (1);

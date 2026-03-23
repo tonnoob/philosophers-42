@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osousa-d <osousa-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/22 21:27:03 by osousa-d          #+#    #+#             */
+/*   Updated: 2026/03/22 21:27:05 by osousa-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -30,6 +42,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	long			last_meal_time;
 	long			meals_eaten;
+	int				philo_is_full;
 	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
@@ -46,6 +59,8 @@ void	eat(t_philo *philo);
 void	sleep_philo(t_philo *philo);
 void	think(t_philo *philo);
 void	monitoring(t_data *rules);
+int		check_death_status(t_data *data);
+void	wait_thread(t_data *rules);
 void	start_simulation(t_data *rules);
 
 #endif
