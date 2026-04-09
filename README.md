@@ -1,129 +1,131 @@
-*Este projeto foi criado como parte do currículo 42 por osousa-d.*
+*This project has been created as part of the 42 curriculum by osousa-d.*
 
 # Philosophers
 
-## Descrição
+## Description
 
-O projeto **Philosophers (philo)** é um exercício clássico de programação concorrente, baseado no problema dos jantares dos filósofos.
+The **Philosophers (philo)** project is a classic concurrent programming exercise based on the philosophers' dining problem.
 
-- Pense que tem X números de filósofos sentados em uma mesa.
-- Cada filósofo traz para a mesa **1 garfo**, e deixa esse garfo do seu lado, ou seja, 1 garfo, 1 filósofo, 1 garfo, 1 filósofo...
-- Contudo, para **comer**, o filósofo precisa de **2 garfos**, um garfo da esquerda e outro da direita.
-- Os filósofos podem fazer 4 ações: 
-	- **Pegar os garfos**
-	- **Comer**
-	- **Dormir**
-	- **Pensar**
+- Imagine you have X number of philosophers sitting at a table.
+- Each philosopher brings **1 fork** to the table and leaves it beside them, i.e., 1 fork, 1 philosopher, 1 fork, 1 philosopher...
+- However, to **eat**, the philosopher needs **2 forks**, one fork from the left and one from the right.
+- The philosophers can perform 4 actions:
+	- **Take the forks**
+	- **Eat**
+	- **Sleep**
+	- **Think**
 
-- O filósofo após **comer** é obrigado a **dormir** pra fazer a digestão, depois ele **pensa**, e depois pode **comer** novamente, mas só pode comer com **2 garfos**.
+- The philosopher, after **eating**, is required to **sleep** to aid digestion, then he **thinks**, and afterwards he can **eat** again, but only with **2 forks**.
 
-- O Desafio é justamente brincar com o tempo que os filósofos demoram pra fazer as ações usando **threads**.
+- The challenge is precisely to play with the time it takes philosophers to perform actions using **threads**.
 
-- O que é **Threads**?
-De forma bem simples, são **subprocessos** dentro de um **processo**.
-Pois cada filósofo executam as ações simuntaneamente, contudo, o que faz eles diferenciarem se um **processo** (filósofo) ta usando um garfo, tornando o garfo indisponivel, é os **mutexes**, então quando um **processo** (filósofo) usa um **garfo** ele trava o **mutex** desse **garfo** e nenhum outro **processo** (filósofo) pode pegar esse mesmo garfo (lembrando que eles pegam os garfos que estão do lado deles).
+- What are **Threads**?
+In simple terms, they are **subprocesses** within a **process**.
+Because each philosopher executes the actions simultaneously, however, what makes them differentiate if a **process** (philosopher) is using a fork, making the fork unavailable, is the **mutex**, so when a **process** (philosopher) uses a **fork** it locks the **mutex** of that **fork** and no other **process** (philosopher) can pick up that same fork (remembering that they pick up the forks that are next to them).
 
-- No input do projeto, colocamos os seguintes dados:
-	- **Número de filósofos** na mesa.
-	- **Tempo para morrer** dos filósofos (em milissegundo), se um filósofo ficar sem comer dentro desse tempo ele morre.
-	- **Tempo para comer** (em milissegundo), ou seja, o filósofo vai demorar esse tempo para comer.
-	- **Tempo para dormir** (em milissegundo), tempo que o filósofo demora dormindo.
-	- **[Número de refeições]**, quantas vezes os filósofos tem que comer pra ficar saciados (esse input é opcional).
-
----
-### Detalhes da Implementação
-Esta implementação utiliza:
-- **Threads** que são os filósofos.
-- **Mutexes** para travar os garfos.
-- **Duas Structs**
-	- **t_philo** Contendo todos os dados do filósofo individual:
-		- **id** (se é o filósofo 1, 2, 3...);
-		- **thread** (subprocesso que vai ser criado);
-		- **last_meal_time** (tempo da ultima refeição);
-		- **meals_eaten** (quantas refeições realizou);
-		- **philo_is_full** (pra saber se já fez todas as refeições);
-		- **meal_mutex**;
-		- **left_fork**(ponteiro para o garfo esquerdo);
-		- **right_fork**(ponteiro para o garfo direito);
-		- **p_data** (ponteiro para a struct com todos os dados globais);
-	- **t_data** Contendo todos os dados globais:
-		- **n_philo** (quantidade de filósofos);
-		- **time_to_die** (tempo para morrer);
-		- **time_to_eat** (tempo para comer);
-		- **time_to_sleep** (tempo para dormir);
-		- **times_a_philo_must_eat** (número de refeições que um filósofo deve realizar);
-		- **time_start** (tempo inicial);
-		- **print_mutex** (mutex para o print para controlar quem vai printar o que);
-		- **death_mutex** (mutex para alterar a variavel de morte);
-		- **philos** (ponteiro para os filósofos);
-		- **forks** (ponteiro para os garfos);
-		- someone_died (verifica se alguem morreu);
+- In the project input, we put the following data:
+	- **Number of philosophers** at the table.
+	- **Time to die** of the philosophers (in milliseconds), if a philosopher goes without eating within this time, he dies.
+	- **Time to eat** (in milliseconds), that is, the time the philosopher will take to eat.
+	- **Time to sleep** (in milliseconds), the time the philosopher spends sleeping.
+	- **[Number of meals]**, how many times the philosophers have to eat to feel satiated (this input is optional).
 
 ---
-### Compilação
+### Implementation Details
+This implementation uses:
+- **Threads** which are the philosophers.
+- **Mutexes** to lock the forks.
+- **Two Structs**
+	- **t_philo** containing all the data of the individual philosopher:
+	- **id** (whether it's philosopher 1, 2, 3...);
+	- **thread** (subprocess to be created);
+	- **last_meal_time** (time of the last meal);
+	- **meals_eaten** (how many meals have been eaten);
+	- **philo_is_full** (to know if all meals have been eaten);
+	- **meal_mutex**; (mutex for the philosopher's meals);
+	- **left_fork** (pointer to the left fork);
+	- **right_fork** (pointer to the right fork);
+	- **p_data** (pointer to the struct with all the global data);
 
-Na raiz do projeto, entre na pasta "philo":
+- **t_data** Containing all global data:
+	- **n_philo** (number of philosophers);
+	- **time_to_die** (time to die);
+	- **time_to_eat** (time to eat);
+	- **time_to_sleep** (time to sleep);
+	- **times_a_philo_must_eat** (number of meals a philosopher must have);
+	- **time_start** (start time);
+	- **print_mutex** (mutex for the print statement to control who prints what);
+	- **death_mutex** (mutex to change the death variable);
+	- **philos** (pointer to the philosophers);
+	- **forks** (pointer to the forks);
+	- **someone_died** (checks if someone died);
+
+---
+### Compilation
+
+In the project root, go to the "philo" folder:
 ```bash
-➜  philosophers git:(main) ✗ ls
-philo  README.md
-➜  philosophers git:(main) ✗ cd philo
-➜  philo git:(main) ✗ 
-➜  philo git:(main) ✗ ls
-inc  Makefile  obj  philo  src
+➜ philosophers git:(main) ✗ ls
+philo README.md
+➜ philosophers git:(main) ✗ cd philo
+➜ philo git:(main) ✗ 
+➜ philo git:(main) ✗ ls
+inc Makefile obj philo src
 ```
 
-Após entrar na pasta, digite o comando para gerar o executável do projeto: 
+After entering the folder, type the command to generate the project executable:
 
 ```bash
 make
 ```
 
-Outros comandos:
-| Comando | Descrição |
+Other commands:
+| Command | Description |
 |---------|-----------|
-| make clean | Limpa arquivos .o |
-| make fclean | Limpa arquivos .o e arquivos executáveis. |
-| make re | Recompila tudo|
-| make valgrind ARGS="input" | Verifica vazamento de memória |
+| make clean | Clears .o files |
+| make fclean | Clears .o files and executable files. |
+| make re | Recompiles everything |
+| make valgrind ARGS="input" | Checks for memory leaks |
 
-## Instruções ##
+## Instructions ##
 
-Após compilar o projeto, você deve executar o arquivo **philo** que foi gerado, com os seguintes argumentos:
+After compiling the project, you must run the generated **philo** file with the following arguments:
 
 ```bash
-./philo "<quantidade de filósofos> <tempo para morrer> <tempo para comer> <tempo para dormir> <argumento opcional[número de vezes que um filósofo tem que comer para ficar cheio]>"
+./philo "<number of philosophers> <time to die> <time to eat> <time to sleep> <optional argument [number of times a philosopher has to eat to get full]>"
 ```
-Exemplo:
+Example:
 ```bash
 ./philo 3 410 200 200
 ```
-ou
+or
 
 ```bash
 ./philo 3 410 200 200 3
 ```
 
-Os argumentos não são passados ​​aleatoriamente; as seguintes entradas não são permitidas:
+Arguments are not passed randomly; the following entries are not allowed:
 
-- Apenas o nome do programa;
-- Cadeias vazias ou cadeias contendo apenas espaços;
-- Argumentos que não sejam números;
-- Um sinal (+ ou -) sem um número;
-- Números negativos;
-- Valores iguais a zero (para argumentos obrigatórios);
-- Quantidade incorreta de argumentos;
-- Números maiores que o limite de um int (overflow);
-- Argumento opcional (n_meals) inválido ou menor/igual a zero;
+- Only the program name;
+- Empty strings or strings containing only spaces;
+- Arguments that are not numbers;
+- A sign (+ or -) without a number;
+- Negative numbers;
+- Values ​​equal to zero (for required arguments);
+- Incorrect number of arguments;
+- Numbers greater than the limit of an int (overflow);
+- Invalid optional argument (n_meals) or less than or equal to zero;
 
 ---
-Após executar o programa com os argumentos, ele imprimirá as ações que cada filósofo está fazendo:
+After running the program with the arguments, it will print the actions that each philosopher is performing:
 
 ```bash
-➜  philo git:(main) ✗ ./philo 3 410 200 200 3
+➜ philo git:(main) ✗ ./philo 3 410 200 200 3
 0 1 has taken a fork
 0 1 has taken a fork
 0 1 is eating
-200 1 is sleeping
+200 1 is sleepingsopher’s death must be displayed within 10 ms of
+their actual de
 200 2 has taken a fork
 200 2 has taken a fork
 200 2 is eating
@@ -136,45 +138,45 @@ Após executar o programa com os argumentos, ele imprimirá as ações que cada 
 410 1 died
 ```
 
-O programa só termina quando algum filósofo morre ou quando todos os filósofos realizam todas as suas refeições (caso tenha colocado).
-## Critérios de Avaliação ##
+The program only ends when a philosopher dies or when all philosophers have finished all their meals (if specified).
 
-O projeto é avaliado visando a lógica e o seu comportamento
+## Evaluation Criteria ##
+The project is evaluated based on its logic and behavior:
 
-- Não pode crasha, não pode dar segfault ou não entra em estado estranho.
+- It cannot crash, segfault, or enter a strange state.
 
-- Um filósofo morre exatamente quando deveria. Se o input de morte foi ~400ms e um filósofo morrer tem que ter um died exatamente em ~400ms.
+- A philosopher dies exactly when they should. If the death input is ~400ms and a philosopher dies, there must be a "died" in exactly ~400ms.
 
-- Valores consistentes, ou seja, ninguém morre "enquanto está comendo".
+- Consistent values, meaning no one dies "while eating".
 
-- O programa não pode travar (deadlock), todos os filósofos pegam somente 1 garfo (isso trava o sistema, pois ninguem vai "soltar" o garfo enquanto não tiver comido, mas só podem comer se tiverem 2 garfos)
+- The program cannot deadlock; all philosophers take only 1 fork (this locks the system, as no one will "let go" of the fork until they have eaten, but they can only eat if they have 2 forks).
 
-- Todos os filósofos comem, ninguém fica "esquecido" até morrer (starvation).
+- All philosophers eat; no one is "forgotten" until they die (starvation).
 
-- Prints corretos, as mensagens não se misturam, se alguém morreu nada mais pode ser imprimido depois do "died" ou se todos ficaram "cheios", sendo feitas da seguinte forma:
+- Correct printouts; messages don't get mixed up. If someone dies, nothing else can be printed after "died," or if all messages are "full," they are printed as follows:
 	- timestamp_in_ms X has taken a fork
 	- timestamp_in_ms X is eating
 	- timestamp_in_ms X is sleeping
 	- timestamp_in_ms X is thinking
 	- timestamp_in_ms X died
 
-- Sem data race, que seria quando um dos subprocessos vai acessar uma váriavel, só que quando esse subprocesso entrou na função a váriavel tinha um valor e antes de terminar a função ela recebeu outro valor de outro subprocesso (isso pode ser testado com helgrind).
+- No data race, which would occur when one of the subprocesses accesses a variable, but when that subprocess enters the function, the variable has one value, and before the function finishes, it receives another value from another subprocess (this can be tested with helgrind).
 
-- Não deve haver vazamento de memória (isso é testado com valgrind).
+- There should be no memory leaks (this is tested with valgrind).
 
-- Outra coisa legal de se testar é que se o input for um que seja possivel todos os filósofos realizar as suas refeições até ficar "cheio/satisfeito", a quantidade tem que ser exatamente (número de filósofos * quantidade de refeições) até ficar satisfeito. Pode ser testado com o seguinte input:
+- Another cool thing to test is that if the input is one where it's possible for all the philosophers to have their meals until they are "full/satisfied," the quantity must be exactly (number of philosophers * number of meals) until they are satisfied. This can be tested with the following input:
 
 ```bash
 ./philo <input> | grep eating | wc -l
 ```
-Exemplo:
+Example:
 ```bash
-➜  philo git:(main) ✗ ./philo 2 800 200 200 5 | grep eating | wc -l
+➜ philo git:(main) ✗ ./philo 2 800 200 200 5 | grep eating | wc -l
 10
 ```
 (2 * 5 = 10)
 
 ---
 
-## Recursos ##
-Utilizei o ChatGPT (https://chatgpt.com/) para me ajudar a entender o conceitos das threads e de mutexes, organizar o projeto (definindo os próximos passos) e debugar um caso de deadlock que apresentava.
+## Resources ##
+I used ChatGPT (https://chatgpt.com/) to help me understand the concepts of threads and mutexes, organize the project (defining the next steps), and debug a deadlock issue I was experiencing.
