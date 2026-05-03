@@ -6,7 +6,7 @@
 /*   By: osousa-d <osousa-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 20:55:08 by osousa-d          #+#    #+#             */
-/*   Updated: 2026/03/22 21:20:45 by osousa-d         ###   ########.fr       */
+/*   Updated: 2026/05/03 12:57:53 by osousa-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ static int	init_philos(t_data *rules)
 		rules->philos[i].right_fork = &rules->forks[(i + 1) % rules->n_philo];
 		rules->philos[i].p_data = rules;
 		rules->philos[i].philo_is_full = 0;
+		pthread_mutex_init(&rules->philos[i].meal_mutex, NULL);
 		i++;
 	}
 	return (1);
