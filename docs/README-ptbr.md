@@ -1,7 +1,5 @@
 *Este projeto foi criado como parte do currículo da 42 por osousa-d.*
 
-[Versão em português 🇧🇷](docs/README-ptbr.md)
-
 # Philosophers
 
 ## Descrição
