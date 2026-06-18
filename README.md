@@ -1,5 +1,7 @@
 *This project has been created as part of the 42 curriculum by osousa-d.*
 
+[Versão em português 🇧🇷](docs/README-ptbr.md)
+
 # Philosophers
 
 ## Description
@@ -37,28 +39,28 @@ This implementation uses:
 - **Mutexes** to lock the forks.
 - **Two Structs**
 	- **t_philo** containing all the data of the individual philosopher:
-	- **id** (whether it's philosopher 1, 2, 3...);
-	- **thread** (subprocess to be created);
-	- **last_meal_time** (time of the last meal);
-	- **meals_eaten** (how many meals have been eaten);
-	- **philo_is_full** (to know if all meals have been eaten);
-	- **meal_mutex**; (mutex for the philosopher's meals);
-	- **left_fork** (pointer to the left fork);
-	- **right_fork** (pointer to the right fork);
-	- **p_data** (pointer to the struct with all the global data);
+		- **id** (whether it's philosopher 1, 2, 3...);
+		- **thread** (subprocess to be created);
+		- **last_meal_time** (time of the last meal);
+		- **meals_eaten** (how many meals have been eaten);
+		- **philo_is_full** (to know if all meals have been eaten);
+		- **meal_mutex**; (mutex for the philosopher's meals);
+		- **left_fork** (pointer to the left fork);
+		- **right_fork** (pointer to the right fork);
+		- **p_data** (pointer to the struct with all the global data);
 
-- **t_data** Containing all global data:
-	- **n_philo** (number of philosophers);
-	- **time_to_die** (time to die);
-	- **time_to_eat** (time to eat);
-	- **time_to_sleep** (time to sleep);
-	- **times_a_philo_must_eat** (number of meals a philosopher must have);
-	- **time_start** (start time);
-	- **print_mutex** (mutex for the print statement to control who prints what);
-	- **death_mutex** (mutex to change the death variable);
-	- **philos** (pointer to the philosophers);
-	- **forks** (pointer to the forks);
-	- **someone_died** (checks if someone died);
+	- **t_data** Containing all global data:
+		- **n_philo** (number of philosophers);
+		- **time_to_die** (time to die);
+		- **time_to_eat** (time to eat);
+		- **time_to_sleep** (time to sleep);
+		- **times_a_philo_must_eat** (number of meals a philosopher must have);
+		- **time_start** (start time);
+		- **print_mutex** (mutex for the print statement to control who prints what);
+		- **death_mutex** (mutex to change the death variable);
+		- **philos** (pointer to the philosophers);
+		- **forks** (pointer to the forks);
+		- **someone_died** (checks if someone died);
 
 ---
 ### Compilation
@@ -104,7 +106,7 @@ or
 ./philo 3 410 200 200 3
 ```
 
-Arguments are not passed randomly; the following entries are not allowed:
+Arguments are not passed randomly, the following entries are not allowed:
 
 - Only the program name;
 - Empty strings or strings containing only spaces;
