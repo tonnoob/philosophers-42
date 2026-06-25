@@ -2,6 +2,8 @@
 
 [Versão em português 🇧🇷](docs/README-ptbr.md)
 
+![](docs/score.png)
+
 # Philosophers
 
 ## Description
@@ -18,6 +20,8 @@ The **Philosophers (philo)** project is a classic concurrent programming exercis
 	- **Think**
 
 - The philosopher, after **eating**, is required to **sleep** to aid digestion, then he **thinks**, and afterwards he can **eat** again, but only with **2 forks**.
+
+![](docs/philo.png)
 
 - The challenge is precisely to play with the time it takes philosophers to perform actions using **threads**.
 

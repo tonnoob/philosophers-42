@@ -1,5 +1,7 @@
 *Este projeto foi criado como parte do currículo da 42 por osousa-d.*
 
+![](score.png)
+
 # Philosophers
 
 ## Descrição
@@ -16,6 +18,8 @@ O projeto **Philosophers (philo)** é um exercício clássico de programação c
     - **Pensar**
 
 - O filósofo, após **comer**, precisa **dormir** para auxiliar a digestão, depois **pensa** e, em seguida, pode **comer** novamente, mas apenas com **dois garfos**.
+
+![](philo.png)
 
 - O desafio consiste justamente em manipular o tempo que os filósofos levam para executar ações usando **threads**.
 
